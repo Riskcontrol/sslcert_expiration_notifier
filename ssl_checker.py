@@ -75,7 +75,7 @@ def check_ssl_dates():
 
             print(f"Checking {domain}: {days_remaining} days remaining (expiry: {expiry_date})")
 
-            if days_remaining == 30 or days_remaining == 14:
+            if days_remaining in [31, 13, 7]:
                 print(f"Sending email for {domain} (days remaining: {days_remaining})")
                 send_email(domain, hosted_location, expiry_date.strftime("%b %d, %Y"), days_remaining)
 
