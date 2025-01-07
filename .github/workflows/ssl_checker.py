@@ -8,7 +8,7 @@ from email.mime.multipart import MIMEMultipart
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 EMAIL = "rcsnbc@gmail.com"
-PASSWORD = "wkhf nxrn uigo uxom"  # Replace with your email password
+PASSWORD = "USER_PASSWORD"  # Replace with your email password
 
 # Load SSL data from CSV
 CSV_FILE = "ssl_data.csv"
