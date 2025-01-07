@@ -51,6 +51,18 @@ def send_email(domain, hosted_location, expiry_date, days_remaining):
     except Exception as e:
         print(f"Failed to send email for {domain}: {e}")
 
+# def check_ssl_dates():
+#     today = datetime.now()
+#     with open(CSV_FILE, 'r') as file:
+#         reader = csv.DictReader(file)
+#         for row in reader:
+#             domain = row['Domain Name']
+#             hosted_location = row['Hosted Location']
+#             expiry_date = datetime.strptime(row['Next Due Date'], "%b %d, %Y")
+#             days_remaining = (expiry_date - today).days
+
+#             if days_remaining == 30 or days_remaining == 14:
+#                 send_email(domain, hosted_location, expiry_date.strftime("%b %d, %Y"), days_remaining)
 def check_ssl_dates():
     today = datetime.now()
     with open(CSV_FILE, 'r') as file:
@@ -61,8 +73,12 @@ def check_ssl_dates():
             expiry_date = datetime.strptime(row['Next Due Date'], "%b %d, %Y")
             days_remaining = (expiry_date - today).days
 
+            print(f"Checking {domain}: {days_remaining} days remaining (expiry: {expiry_date})")
+
             if days_remaining == 30 or days_remaining == 14:
+                print(f"Sending email for {domain} (days remaining: {days_remaining})")
                 send_email(domain, hosted_location, expiry_date.strftime("%b %d, %Y"), days_remaining)
+
 
 if __name__ == "__main__":
     check_ssl_dates()
