@@ -156,7 +156,7 @@ def check_ssl_dates():
                 print(f"Checking {domain}: {days_remaining} days remaining (expiry: {expiry_date})")
 
                 # Send email for specific conditions
-                if days_remaining in [31, 13, 7]:
+                if days_remaining in [30, 13, 6]:
                     print(f"Sending email for {domain} (days remaining: {days_remaining})")
                     send_email(domain, hosted_location, expiry_date.strftime("%b %d, %Y"), days_remaining)
     except FileNotFoundError:
