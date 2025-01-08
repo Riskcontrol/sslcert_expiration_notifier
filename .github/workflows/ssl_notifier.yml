@@ -25,4 +25,7 @@ jobs:
         fi
 
     - name: Run SSL Checker
+      env:
+        USER_EMAIL: ${{ secrets.USER_EMAIL }}
+        USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
       run: python ssl_checker.py
