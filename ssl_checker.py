@@ -32,14 +32,14 @@ def send_email(domain, hosted_location, expiry_date, days_remaining):
 
     This is an automated alert to notify you of the upcoming SSL certificate expiration for the following domain:
 
-    - **Domain Name**: {domain}
-    - **Hosted Location**: {hosted_location}
-    - **SSL Expiry Date**: {expiry_date}
+    - Domain Name: {domain}
+    - Hosted Location: {hosted_location}
+    - SSL Expiry Date: {expiry_date}
 
     Please take action to renew the SSL certificate before it expires. Here are the details:
 
-    1. If **1 month or less** remains for expiry, please prioritize this renewal.
-    2. If **2 weeks or less** remains for expiry, this is critical and requires immediate action.
+    1. If (1 month or less) remains for expiry, please prioritize this renewal.
+    2. If (2 weeks or less) remains for expiry, this is critical and requires immediate action.
 
     If you have already renewed the SSL certificate, please update our records.
 
@@ -72,7 +72,7 @@ def check_ssl_dates():
             reader = csv.DictReader(file)
             for row in reader:
                 domain = row['Domain Name']
-                hosted_location = row['Hosted Location']
+                
                 expiry_date = datetime.strptime(row['Next Due Date'], "%b %d, %Y")
                 days_remaining = (expiry_date - today).days
 
@@ -81,7 +81,7 @@ def check_ssl_dates():
                 # Send email for specific conditions
                 if days_remaining in [30, 13, 6]:
                     print(f"Sending email for {domain} (days remaining: {days_remaining})")
-                    send_email(domain, hosted_location, expiry_date.strftime("%b %d, %Y"), days_remaining)
+                    send_email(domain, expiry_date.strftime("%b %d, %Y"), days_remaining)
     except FileNotFoundError:
         print(f"CSV file '{CSV_FILE}' not found. Please check the file path.")
     except Exception as e:
