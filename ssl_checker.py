@@ -94,7 +94,7 @@ import os
 # SMTP configuration
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465  # SSL port for Gmail
-EMAIL = "rcsnbc@gmail.com"
+EMAIL = os.environ.get('USER_EMAIL')
 PASSWORD = os.environ.get('USER_PASSWORD')  # Ensure this environment variable is set securely
 
 # Load SSL data from CSV
