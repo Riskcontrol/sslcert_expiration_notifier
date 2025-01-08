@@ -139,6 +139,19 @@ def send_email(domain, hosted_location, expiry_date, days_remaining):
         print(f"Email sent successfully for {domain}")
     except Exception as e:
         print(f"Failed to send email for {domain}: {e}")
+    
+
+    
+
+
+
+try:
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login(EMAIL, PASSWORD)
+        print("Authentication successful!")
+except Exception as e:
+    print(f"Authentication failed: {e}")
+
 
 
 def check_ssl_dates():
