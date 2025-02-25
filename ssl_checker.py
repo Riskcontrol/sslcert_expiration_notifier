@@ -220,7 +220,7 @@ for _, row in df.iterrows():
         print(f"🔍 Checking {domain}: {days_remaining} days remaining (Expiry: {expiry_date.strftime('%b %d, %Y')})")
 
         # Send alerts only when necessary
-        if days_remaining in [30, 13, 6, 87]:
+        if days_remaining in [30, 13, 6]:
             print(f"🚨 Sending SSL expiry alert for {domain} (Expires in {days_remaining} days)")
             send_email(domain, expiry_date.strftime("%b %d, %Y"), days_remaining)
 
