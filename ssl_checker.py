@@ -106,22 +106,50 @@ import os
 
 # OneDrive/SharePoint direct download link
 EXCEL_URL = "https://riskcontrolacademy-my.sharepoint.com/:x:/g/personal/webmaster_riskcontrolnigeria_com/Ef_739nav8lNhfrMNawxVzQB6KSVvbeNVa0l-HjawRtzpQ?download=1"
+# Download the Excel file
+response = requests.get(EXCEL_URL)
+
+if response.status_code == 200:
+    with open("ssl_data.xlsx", "wb") as file:
+        file.write(response.content)
+    print("✅ Excel file downloaded successfully.")
+else:
+    print(f"❌ Failed to fetch the Excel file. HTTP {response.status_code}")
+    exit(1)
+
+# ================================
+# 🔹 2. Read & Process the Excel Data
+# ================================
 
 try:
-    # Read Excel file from SharePoint
-    df = pd.read_excel(EXCEL_URL, engine="openpyxl")
+    # Read the Excel file
+    df = pd.read_excel("ssl_data.xlsx", engine="openpyxl")
 
     # Convert "Next Due Date" and "SSL Expiry Date" to datetime format
     df["Next Due Date"] = pd.to_datetime(df["Next Due Date"], errors="coerce")
     df["SSL Expiry Date"] = pd.to_datetime(df["SSL Expiry Date"], errors="coerce")
 
-    # Print sample data to confirm
-    print("✅ Successfully loaded SSL data:")
+    print("✅ Successfully loaded SSL data.")
     print(df[["Domain Name", "Next Due Date", "SSL Expiry Date"]].head())
 
 except Exception as e:
-    print(f"❌ Failed to load Excel file: {e}")
+    print(f"❌ Error reading Excel file: {e}")
     exit(1)
+# try:
+#     # Read Excel file from SharePoint
+#     df = pd.read_excel(EXCEL_URL, engine="openpyxl")
+
+#     # Convert "Next Due Date" and "SSL Expiry Date" to datetime format
+#     df["Next Due Date"] = pd.to_datetime(df["Next Due Date"], errors="coerce")
+#     df["SSL Expiry Date"] = pd.to_datetime(df["SSL Expiry Date"], errors="coerce")
+
+#     # Print sample data to confirm
+#     print("✅ Successfully loaded SSL data:")
+#     print(df[["Domain Name", "Next Due Date", "SSL Expiry Date"]].head())
+
+# except Exception as e:
+#     print(f"❌ Failed to load Excel file: {e}")
+#     exit(1)
 
 # ================================
 # 🔹 2. SMTP Email Configuration
