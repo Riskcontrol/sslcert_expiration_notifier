@@ -105,7 +105,7 @@ import os
 # ================================
 
 # OneDrive/SharePoint direct download link
-EXCEL_URL = "https://riskcontrolacademy-my.sharepoint.com/personal/webmaster_riskcontrolnigeria_com/_layouts/15/download.aspx?UniqueId=Ef_739nav8lNhfrMNawxVzQB6KSVvbeNVa0l-HjawRtzpQ"
+EXCEL_URL = "https://riskcontrolacademy-my.sharepoint.com/:x:/g/personal/webmaster_riskcontrolnigeria_com/Ef_739nav8lNhfrMNawxVzQB6KSVvbeNVa0l-HjawRtzpQ?download=1"
 
 try:
     # Read Excel file from SharePoint
