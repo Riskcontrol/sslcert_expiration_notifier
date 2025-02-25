@@ -174,21 +174,21 @@ def send_email(domain, expiry_date, days_remaining):
 
     This is an automated alert to notify you of the upcoming SSL certificate expiration for the following domain:
 
-    🔹 **Domain Name:** {domain}
-    🔹 **SSL Expiry Date:** {expiry_date}
-    🔹 **Days Remaining:** {days_remaining}
+    🔹 -Domain Name: {domain}
+    🔹 -SSL Expiry Date: {expiry_date}
+    🔹 -Days Remaining: {days_remaining}
 
     Please take action to renew the SSL certificate **before it expires**.
 
-    🔴 **Urgency Levels:**
-    - If **30 days or less** remain, please prioritize renewal.
-    - If **13 days or less** remain, action is critical.
-    - If **6 days or less** remain, immediate renewal is required.
+    🔴 Urgency Levels:
+    - If 30 days or less remain, please prioritize renewal.
+    - If 13 days or less remain, action is critical.
+    - If 6 days or less remain, immediate renewal is required.
 
     If you have already renewed the SSL certificate, please update our records.
 
     Best regards,  
-    **Nigeria Risk Index Automation Bot**
+    -Nigeria Risk Index Automation Bot-
     """
 
     msg = MIMEMultipart()
@@ -220,7 +220,7 @@ for _, row in df.iterrows():
         print(f"🔍 Checking {domain}: {days_remaining} days remaining (Expiry: {expiry_date.strftime('%b %d, %Y')})")
 
         # Send alerts only when necessary
-        if days_remaining in [30, 13, 6]:
+        if days_remaining in [30, 13, 6, 87]:
             print(f"🚨 Sending SSL expiry alert for {domain} (Expires in {days_remaining} days)")
             send_email(domain, expiry_date.strftime("%b %d, %Y"), days_remaining)
 
